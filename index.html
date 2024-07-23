@@ -1,0 +1,109 @@
+<html>
+<head>
+    <title>dumbass stick figures</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<a href="index.html" class="button2">dumbass stick figures</a>
+
+<div>
+    <a href="comics.html" class="button1">comics</a>
+    <a href="oops.html" class="button1">main site</a>
+    <a href="about.html" class="button1">about</a>
+</div>
+
+<div class="comic-container" id="comic-container">
+    <img id="comic-image" alt="Comic" class="responsive-image">
+</div>
+
+<div>
+    <button class="custom-button" onclick="showFirstComic()">
+        <img src="graphics/first.png" alt="first" class="button-img">
+        <br>
+        first
+    </button>
+    <button class="custom-button" onclick="showPreviousComic()">
+        <img src="graphics/previous.png" alt="previous" class="button-img">
+        <br>
+        previous
+    </button>
+    <button class="custom-button" onclick="randomizeComic()">
+        <img src="graphics/random.png" alt="random" class="button-img">
+        <br>
+        random
+    </button>
+    <button class="custom-button" onclick="showNextComic()">
+        <img src="graphics/next.png" alt="next" class="button-img">
+        <br>
+        next
+    </button>
+    <button class="custom-button" onclick="showLastComic()">
+        <img src="graphics/last.png" alt="last" class="button-img">
+        <br>
+        last
+    </button>
+</div>
+
+<script>
+    var comicFolderSize = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--comic-folder-size'));
+
+    function getRandomInt(min, max) {
+        return Math.floor(Math.random() * (max - min + 1)) + min;
+    }
+
+    var currentComicNumber = getRandomInt(1, comicFolderSize);
+
+    function showComic(comicNumber) {
+        var imagePath = 'comics/' + comicNumber + '.png';
+        document.getElementById('comic-image').src = imagePath;
+        document.getElementById('comic-image').alt = 'Comic #' + comicNumber;
+    }
+
+    function showFirstComic() {
+        currentComicNumber = 1;
+        showComic(currentComicNumber);
+    }
+
+    function showPreviousComic() {
+        currentComicNumber = (currentComicNumber - 1 > 0) ? currentComicNumber - 1 : comicFolderSize;
+        showComic(currentComicNumber);
+    }
+
+    function randomizeComic(){
+        currentComicNumber = getRandomInt(1, comicFolderSize);
+        showComic(currentComicNumber);
+    }
+
+    function showNextComic() {
+        currentComicNumber = (currentComicNumber + 1 <= comicFolderSize) ? currentComicNumber + 1 : 1;
+        showComic(currentComicNumber);
+    }
+
+    function showLastComic() {
+        currentComicNumber = comicFolderSize;
+        showComic(currentComicNumber);
+    }
+
+    showComic(currentComicNumber);
+</script>
+
+<hr>
+
+	<a href="https://www.youtube.com/channel/UCRjpTuRtBrg7z8xt6vnzzJQ"><button class="custom-button">
+    <div class="button-container">
+		<img src="graphics/yt.png" alt="youtube" class="button-img">
+		<p>youtube</p>
+    </div>
+	</button></a>
+	<a href="https://twitter.com/RetronicsMusic"><button class="custom-button">
+    <div class="button-container">
+		<img src="graphics/notx.png" alt="twitter" class="button-img">
+		<p>i am not calling this shit x</p>
+    </div>
+	</button></a>
+	
+	<p> By Robyn and Retronics</p>
+
+</body>
+</html>
